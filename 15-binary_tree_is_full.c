@@ -1,27 +1,26 @@
 #include "binary_trees.h"
 
 /**
- * main - Entry point
- *
- * Return: Always 0 (Success)
+ * binary_tree_is_full - checks if given node is full or not
+ * @tree: - the input of root node
+ * Return: - 1 for full node and 0 for fail
  */
 
 int binary_tree_is_full(const binary_tree_t *tree)
 {
 	if (tree == NULL)
 	{
-		return 0;
+		return (0);
 	}
-	binary_tree_is_full(tree->left);
-	binary_tree_is_full(tree->right);
 
-	if (tree->left != NULL && tree->right != NULL && tree->parent != NULL)
+	if (tree->left == NULL && tree->right == NULL)
 	{
-		return 1;
+		return (1);
 	}
-	else if (tree->left == NULL && tree->right == NULL && tree->parent != NULL)
+
+	else if (tree->left != NULL && tree->right != NULL)
 	{
-		return 1;
+		return (binary_tree_is_full(tree->left) && binary_tree_is_full(tree->right));
 	}
-	return 0;
+	return (0);
 }
